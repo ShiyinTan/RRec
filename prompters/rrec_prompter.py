@@ -33,6 +33,14 @@ def get_item_info_str(sequence, item_dset, just_title=False):
     if len_des > DESCRIPTION_MAX_LEN:
         description = ' '.join(des[:DESCRIPTION_MAX_LEN]) + '...'
 
+    main_category = item_info["main_category"] if "main_category" in item_info else ""
+    if isinstance(main_category, str) and main_category.startswith("POI"):
+        subtitle = item_info["subtitle"] if "subtitle" in item_info else ""
+        return (f"Title: {item_title}\n"
+                f"Category: {subtitle}\n"
+                f"Number of Check-ins: {num_buyers}\n"
+                f"Description: {description}")
+
     item_info_str = (f"Title: {item_title}\n"
                      f"User Rating: {average_rating}\n"
                      f"Number of Buyers: {num_buyers}\n"

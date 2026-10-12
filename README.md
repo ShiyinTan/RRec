@@ -62,6 +62,15 @@ The script will:
 - Split the data into train/validation/test sets
 - Save the processed dataset in the specified directory
 
+### POI datasets (Foursquare NYC and Tokyo)
+
+NYC and Tokyo are not in this repository. `preprocess_poi.py` downloads the public TSMC 2014 Foursquare check-in release and writes the same on-disk format as the Amazon data. The default `--K 10` iteratively removes users and places with fewer than 10 check-ins. Each user's last visit is the test target and the second-to-last visit is the validation target.
+
+```bash
+python preprocess_poi.py --dataset all --K 10 --window_size 20 --data_root_dir data
+```
+
+`--dataset` accepts `NYC`, `TKY`, or `all`. Processed data is saved to `data/NYC_10` and `data/TKY_10`. Train with `--dataset_category NYC` or `TKY`, and keep `--window_size` less than or equal to the value used above.
 
 ### Pretrained Model Preparations
 

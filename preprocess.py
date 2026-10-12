@@ -283,6 +283,7 @@ def _download_raw(path: str, type: str = "review", category: str = "Movies_and_T
     else:
         raise ValueError(f"Invalid type: {type}")
 
+    os.makedirs(path, exist_ok=True)
     base_name = os.path.basename(url)
     local_filepath = os.path.join(path, base_name)
     if not os.path.exists(local_filepath):
